@@ -37,9 +37,9 @@
         "debug": false
     },
     "rectify": {
-        "input_file": "img_000000000_State4 - Acquired Image_000.tif",
+        "input_file": "bg_intensity_avg_ths.tif",
         "calibration_file": "calibration.lfc",
-        "output_filename": "state4_rectified.png",
+        "output_filename": "radiometry_rectified.tif",
         "subaperture": false,
         "output_pixels_per_lenslet": ""
     },
