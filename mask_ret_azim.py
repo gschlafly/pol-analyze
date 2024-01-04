@@ -3,6 +3,7 @@ import tifffile
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def apply_mask(image_path, mask_path, output_path):
     # Check if the mask file is a PNG
     if not mask_path.lower().endswith('.png'):
@@ -36,18 +37,18 @@ def apply_mask(image_path, mask_path, output_path):
     plt.show(block=True)
 
     # Save the masked image
-    plt.imsave(output_path, masked_image, cmap='gray', format='png')
+    tifffile.imwrite(output_path, masked_image)
 
 
 mask_dir = 'dataset/mask'
 mask_filename = os.path.join(mask_dir, 'radiometry_8bit.png')
 
-# Apply the mask to the first image
+# Apply the mask to the retardance image
 apply_mask(os.path.join(mask_dir, 'retardance.tif'), mask_filename,
-           os.path.join(mask_dir, 'retardance_masked.png')
+           os.path.join(mask_dir, 'retardance_masked.tif')
 )
 
-# Apply the mask to the second image
+# Apply the mask to the azimuth image
 apply_mask(os.path.join(mask_dir, 'azimuth.tif'), mask_filename,
-           os.path.join(mask_dir, 'azimuth_masked.png')
+           os.path.join(mask_dir, 'azimuth_masked.tif')
 )
