@@ -23,7 +23,17 @@ def apply_mask(image_path, mask_path, output_path):
     # Apply the mask (element-wise multiplication)
     if image.ndim == 3 and mask.ndim == 2:  # Color image, grayscale mask
         mask = np.expand_dims(mask, axis=2)  # Add channel dimension to mask
-    masked_image = np.multiply(image, mask)
+
+    mask_uint16 = mask.astype(np.uint16)
+    masked_image = np.multiply(image, mask_uint16)
+
+    assert masked_image.dtype == np.uint16
+    assert masked_image.dtype == image.dtype
+
+    # Display the masked image
+    plt.imshow(masked_image, cmap='gray')
+    plt.title(f'Masked Image of {image_path.split("/")[-1]}')
+    plt.show(block=True)
 
     # Save the masked image
     tifffile.imwrite(output_path, masked_image)
