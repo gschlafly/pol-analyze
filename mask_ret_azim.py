@@ -36,7 +36,7 @@ def apply_mask(image_path, mask_path, output_path):
     plt.show(block=True)
 
     # Save the masked image
-    tifffile.imwrite(output_path, masked_image)
+    plt.imsave(output_path, masked_image, cmap='gray', format='png')
 
 
 mask_dir = 'dataset/mask'
@@ -44,10 +44,10 @@ mask_filename = os.path.join(mask_dir, 'radiometry_8bit.png')
 
 # Apply the mask to the first image
 apply_mask(os.path.join(mask_dir, 'retardance.tif'), mask_filename,
-           os.path.join(mask_dir, 'retardance_masked.tif')
+           os.path.join(mask_dir, 'retardance_masked.png')
 )
 
 # Apply the mask to the second image
 apply_mask(os.path.join(mask_dir, 'azimuth.tif'), mask_filename,
-           os.path.join(mask_dir, 'azimuth_masked.tif')
+           os.path.join(mask_dir, 'azimuth_masked.png')
 )
